@@ -1,0 +1,281 @@
+/* 基本スタイル */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Noto Sans JP", sans-serif; background-color: #efefef; color: #333; }
+.container { display: flex; min-height: 100vh; }
+
+/* サイドバー */
+.sidebar { width: 190px; background-color: #d9e9df; position: fixed; height: 100vh; box-sizing:border-box;}
+.sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #fff;
+    z-index: -1; /* 境界線だけを背面に */
+}
+.logo { width: 190px; height: 150px; display: flex; align-items: center; justify-content: center; border-top: 6px solid #2a5439; background-color: #fff; }
+.logo h1 { color: #417545; font-family: "Lexend", sans-serif; font-size: 22px; font-weight: 700; }
+nav { margin-top: 4px;}
+.nav-group { margin-bottom: 0; }
+.nav-group h2 { color: #225836; font-size: 16px; padding: 8px 16px; font-weight: bold; border: 4px solid transparent; border-right:none; box-sizing:border-box;}
+.nav-group h2 a { color: #417545; text-decoration: none; }
+.nav-group ul { list-style: none; margin-left: 16px; box-sizing:border-box;}
+.nav-group li { padding: 8px 16px; border: 4px solid transparent; border-right: none; box-sizing: border-box;}
+.nav-group li a { color: #424242; text-decoration: none; font-size: 16px; display: block; font-weight: bold; box-sizing: border-box;}
+.nav-group h2.active { background-color: #efefef; border: 4px solid #fff; border-right: none; box-sizing: border-box;}
+.nav-group h2.active a { color: #225836; }
+.nav-group li.active { background-color: #efefef; border: 4px solid #fff; border-right: none; box-sizing: border-box;}
+.nav-group li.active a { color: #225836; }
+.nav-group:first-child li { padding: 6px 20px; background-color: #e8f5e9; }
+.nav-group:first-child li a { color: #225836; font-weight: 500; font-size: 16px; }
+nav .seperator {width:calc(100% - 4px);background-color: #c1d1c7;height:2px;}
+
+/* メインコンテンツ */
+.main-content { flex: 1; margin-left: 200px; padding: 30px; display: flex; flex-direction: column; gap: 30px; width: calc(100% - 200px); min-height: 100vh; min-width:1080px; }
+
+/* コンテンツの表示制御 */
+#需要家, #発電施設 { display: none; }
+.dashboard-header { flex-shrink: 0; display: flex; background-color: #fff; border-radius: 8px; padding: 8px 20px; gap: 20px; align-items: center; }
+.dashboard-header h2 { font-size: 28px; font-weight: 700; color: #444; }
+.dashboard-header p { color: #444; font-size: 18px; font-weight: 700; }
+.dashboard-row-content { display: flex; flex-direction: column; gap: 20px; }
+.dashboard-column-content { flex: 1; display: flex; flex-direction: row; gap: 20px; }
+
+/* カード行 */
+.card-row { display: flex; gap: 20px; width: 100%; align-items: stretch; }
+
+/* チャートカードコンテナ */
+.chart-card-container { display: flex; flex-direction: column; gap: 20px; height: 100%; }
+.chart-card-container .chart-card { flex: 1; min-height: calc((100% - 20px) / 2); display: flex; flex-direction: column; }
+.chart-card-container .chart-card .card-content { flex: 1; min-height: 0; }
+
+/* カード列 */
+.card-column { display: flex; gap: 20px; width: 100%; flex-direction: column; align-items: flex-start; height: 100%; }
+/* .card-column > .chart-card:last-child { flex: 1; } */
+
+/* カードコンテンツ */
+.card-content { background-color: #fff; border-radius: 0 0 8px 8px; width: 100%; /*display: flex; flex-direction: column; flex: 1; justify-content: center; */}
+
+/* カード幅設定 */
+.single-width { width: calc((100% - 40px) / 3) !important; }
+.double-width { width: calc(((100% - 40px) / 3) * 2 + 20px) !important; }
+
+
+/* カード共通スタイル */
+.chart-card { background-color: transparent; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; width: 100%; }
+.card-header { display: flex; align-items: flex-end; flex-shrink: 0; }
+.card-header h3 { color: #444; font-size: 16px; font-weight: 700; margin-top: 0; background-color: #fff; border-radius: 8px 8px 0 0; border:solid 2px #dadada; border-bottom:0; padding: 10px 16px 10px 52px; display: inline-block; white-space: nowrap; background-repeat: no-repeat; background-position: 12px center; background-size: 20px; height:46px; }
+
+/* アイコン設定 */
+.card-header h3.icon-reduction { background-image: url('../img/reduction.svg'); background-size: 32px; }
+.card-header h3.icon-reduction-target { background-image: url('../img/reduction-target.svg'); background-size: 32px; }
+.card-header h3.icon-impact { background-image: url('../img/impact.svg'); background-size: 32px; }
+.card-header h3.icon-recycle-rate { background-image: url('../img/recycle-rate.svg'); background-size: 32px; }
+.card-header h3.icon-monthly-recycle { background-image: url('../img/monthly-recycle.svg'); background-size: 32px; }
+.card-header h3.icon-total-reduction { background-image: url('../img/total-reduction.svg'); background-size: 32px; }
+.card-header h3.icon-recycle { background-image: url('../img/recycle.svg'); background-size: 32px; }
+.card-header h3.icon-generate-detail { background-image: url('../img/generate-detail.svg'); background-size: 32px; }
+.card-header h3.icon-total-generate { background-image: url('../img/total-generate.svg'); background-size: 32px; }
+.card-header h3.icon-performance { background-image: url('../img/performance.svg'); background-size: 32px; }
+.card-header h3.icon-monthly-generate { background-image: url('../img/monthly-generate.svg'); background-size: 32px; }
+.card-header h3.icon-daily-recycle { background-image: url('../img/daily-generate.svg'); background-size: 32px; }
+
+.subtitle { color: #757575; font-size: 10px; font-weight: 700; width: 100%; display: flex; align-items: center; justify-content: flex-end; padding: 2px 8px; background-color: #e6e6e6; text-align: right; }
+
+/* チャートコンテナ */
+.chart-container { display: flex; flex-direction: column; gap: 20px; }
+.legend-container { display: flex; gap: 8px; }
+
+
+/***********************************************************
+ホーム
+***********************************************************/
+
+/* CO2削減量カード - ホーム */
+#ホーム #CO2削減量 .card-content { border-top: 2px solid #009859; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center; flex: 1; padding: 8px 20px; }
+#ホーム #CO2削減量 .card-content .main-value { font-family: "Lexend", sans-serif; font-size: 44px; font-weight: 500; color: #444; }
+#ホーム #CO2削減量 .card-content .main-value-unit { font-family: "Noto Sans JP", sans-serif; font-size: 18px; font-weight: 700; color: #444; margin-left: 4px; }
+#ホーム #CO2削減量 .card-content .comparison { color: #757575; font-size: 14px; border: 2px solid #e0e0e0; text-align: center; margin-left: 8px; }
+#ホーム #CO2削減量 .card-content .comparison-label { font-family: "Noto Sans JP", sans-serif; font-size: 12px; font-weight: 700; color: #444; border-bottom: 2px solid #e0e0e0; padding: 2px 8px; }
+#ホーム #CO2削減量 .card-content .comparison-value { font-family: "Lexend", sans-serif; color: #212121; font-size: 40px; padding: 0px 6px; line-height: 48px; }
+#ホーム #CO2削減量 .card-content .comparison-value .comparison-unit { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 16px; padding: 0px 8px 8px; }
+#ホーム #CO2削減量 .card-content .percentage { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; font-size: 48px; line-height: 100%; }
+
+/* 目標達成率カード - ホーム */
+#ホーム #CO2削減量目標達成率 .card-content { border-top: 2px solid #8cbdfc; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center; position: relative; flex: 1; gap:20px; }
+#ホーム #CO2削減量目標達成率 .card-content .gauge-chart { width: 140px; height: 80px; position: relative; }
+#ホーム #CO2削減量目標達成率 .card-content .percentage { font-family: "Lexend", sans-serif; font-size: 16px; font-weight: 700; color: #444; font-size: 40px; line-height: 100%; }
+#ホーム #CO2削減量目標達成率 .card-content .percentage .unit { font-size:14px; margin-left:4px; }
+#ホーム #CO2削減量目標達成率 .card-content .target-value { display: flex; flex-direction: column; text-align: center; color: #225836; font-size: 14px; right: 20px; bottom: 20px; }
+#ホーム #CO2削減量目標達成率 .card-content .target-value .main-label { color: #444; font-size: 12px; font-weight: 700; border-top:solid 2px #e6e6e6; border-bottom:solid 2px #e6e6e6; }
+#ホーム #CO2削減量目標達成率 .card-content .target-value .main-value { font-family: "Lexend", sans-serif; color: #212121; font-size: 40px; border-bottom:solid 2px #e6e6e6; line-height: 32px; margin-top: 12px; }
+#ホーム #CO2削減量目標達成率 .card-content .target-value .main-unit { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; }
+
+/* インパクトカード - ホーム */
+#ホーム #インパクト .card-content { border-top: 2px solid #89c227; text-align: center; display: flex; flex-direction: row; justify-content: space-between; flex: 1; align-items: center; padding:8px 20px; }
+#ホーム #インパクト .card-content .main-label { color: #444; font-size: 12px; font-weight: 700; }
+#ホーム #インパクト .card-content .area { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#ホーム #インパクト .card-content .main-value { font-family: "Lexend", sans-serif; font-size: 44px; font-weight: 500; color: #444; display: flex; align-items: baseline; justify-content: center; }
+#ホーム #インパクト .card-content .main-unit { font-size: 12px; font-weight: 700; margin-left: 4px; height:100%; display:flex; align-items:flex-end; padding-bottom:8px; }
+#ホーム #インパクト .card-content .pictgram { display: flex; justify-content: center; align-items: center; flex-direction: row; margin-left: 8px; }
+#ホーム #インパクト .card-content .people-icon { display: inline-block; width: 97px; height: 82px; background-image: url('../img/impact-pict.svg'); margin-right: 8px; }
+
+/* 再エネ利用率カード - ホーム */
+#ホーム #再エネ利用率 .card-content { border-top: 2px solid #2541b3; text-align: center; padding: 12px 12px 8px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-height: 354px; }
+#ホーム #再エネ利用率 .card-content .energy-stats { /* margin-bottom: 20px; */ }
+#ホーム #再エネ利用率 .card-content .total-energy { border-bottom:1px solid #e6e6e6; padding-bottom: 12px; }
+#ホーム #再エネ利用率 .card-content .total-energy .main-label { color: #444; font-size: 18px; font-weight: 700; }
+#ホーム #再エネ利用率 .card-content .total-energy .main-value { font-family: "Lexend", sans-serif; color: #444; font-size: 40px; font-weight: 500; }
+#ホーム #再エネ利用率 .card-content .total-energy .main-value .main-unit { font-family: "Noto Sans JP", sans-serif; color: #444; font-size: 18px; font-weight: 700; margin: 16px 4px; }
+#ホーム #再エネ利用率 .card-content .donut-chart { flex: 1; position: relative; min-height: 0; width: 100%; height: 215px; text-align: center; }
+#ホーム #再エネ利用率 .card-content .donut-chart canvas {/*  width: 215px !important; height: 215px !important; */ }
+
+/* 再エネ利用率推移（月別） - ホーム */
+#ホーム #再エネ利用率推移（月別） .card-content { border-top: 2px solid #890080; padding: 20px; max-height: 354px; }
+#ホーム #再エネ利用率推移（月別） .card-content .bar-chart { flex: 1; position: relative; min-height: 256px; }
+
+
+/***********************************************************
+需要家施設
+***********************************************************/
+
+/* CO2削減量カード - 需要家 */
+#需要家 #CO2削減量 .card-content { border-top: 2px solid #009859; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; flex: 1; padding: 8px 20px; }
+#需要家 #CO2削減量 .card-content .main-value { font-family: "Lexend", sans-serif; font-size: 44px; font-weight: 500; color: #444; }
+#需要家 #CO2削減量 .card-content .main-unit { font-family: "Noto Sans JP", sans-serif; font-size: 18px; font-weight: 700; color: #444; margin-left: 4px; }
+#需要家 #CO2削減量 .card-content .comparison { color: #757575; font-size: 14px; border: 2px solid #e0e0e0; text-align: center; margin-left: 8px; }
+#需要家 #CO2削減量 .card-content .comparison-label { font-family: "Noto Sans JP", sans-serif; font-size: 12px; font-weight: 700; color: #444; border-bottom: 2px solid #e0e0e0; padding: 2px 8px; }
+#需要家 #CO2削減量 .card-content .comparison-value { font-family: "Lexend", sans-serif; color: #212121; font-size: 40px; padding: 0px 6px; line-height: 48px; }
+#需要家 #CO2削減量 .card-content .comparison-value .comparison-unit { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 16px; padding: 0px 8px 8px; }
+#需要家 #CO2削減量 .card-content .percentage { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; font-size: 48px; line-height: 100%; }
+
+/* 再エネ利用率推移（月別） - 需要家 */
+#需要家 #再エネ利用率推移（月別） .card-content { border-top: 2px solid #890080; padding: 12px; min-height: 235px; }
+#需要家 #再エネ利用率推移（月別） .card-content .bar-chart { flex: 1; position: relative; }
+
+/* 再エネ利用率カード - 需要家 */
+#需要家 #再エネ利用率 .card-content { border-top: 2px solid #2541b3; text-align: center; padding: 8px 12px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; max-height: 234px; }
+#需要家 #再エネ利用率 .card-content .donut-chart { flex: 1; position: relative; min-height: 0; width: 100%; height: 215px; text-align: center; }
+#需要家 #再エネ利用率 .card-content .donut-chart canvas { /*width: 215px !important;  height: 215px !important; */ }
+
+/* 本日の電気利用内訳 - 需要家 */
+#需要家 #本日の電気利用内訳 .card-content { border-top: 2px solid #007ec7; padding: 4px 12px; max-height: 235px;min-height: 235px; }
+#需要家 #本日の電気利用内訳 .card-content .bar-chart { flex: 1; position: relative; }
+#需要家 #本日の電気利用内訳 .card-content .legend-item { display: flex; align-items: center; font-size: 12px; color: #757575; }
+#需要家 #本日の電気利用内訳 .card-content .legend-color { width: 12px; height: 12px; border-radius: 2px; margin-right: 8px; }
+#需要家 #本日の電気利用内訳 .card-content .legend-value { margin-left: auto; color: #212121; font-weight: 500; }
+
+
+/***********************************************************
+オフサイト発電蓄電施設
+***********************************************************/
+
+/* 累計発電量 - 発電施設 */
+#発電蓄電施設 #累計発電量 .card-content { border-top: 2px solid #f28f00; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center; flex: 1; padding: 8px 20px; }
+#発電蓄電施設 #累計発電量 .card-content .main-value { font-family: "Lexend", sans-serif; font-size: 40px; font-weight: 500; color: #444; }
+#発電蓄電施設 #累計発電量 .card-content .main-value-unit { font-family: "Noto Sans JP", sans-serif; font-size: 18px; font-weight: 700; color: #444; margin-left: 4px; }
+#発電蓄電施設 #累計発電量 .card-content .comparison { color: #757575; font-size: 14px; border: 2px solid #e0e0e0; text-align: center; margin-left: 8px; }
+#発電蓄電施設 #累計発電量 .card-content .comparison-label { font-family: "Noto Sans JP", sans-serif; font-size: 12px; font-weight: 700; color: #444; border-bottom: 2px solid #e0e0e0; padding: 2px 8px; }
+#発電蓄電施設 #累計発電量 .card-content .comparison-value { font-family: "Lexend", sans-serif; color: #212121; font-size: 36px; padding: 0px 6px; line-height: 48px; }
+#発電蓄電施設 #累計発電量 .card-content .comparison-value .comparison-unit { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 16px; padding: 0px 8px 8px; }
+#発電蓄電施設 #累計発電量 .card-content .percentage { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; font-size: 48px; line-height: 100%; }
+
+/* 発電量推移（月別） - 発電施設 */
+#発電蓄電施設 #発電量推移（月別） .card-content { border-top: 2px solid #e60012; padding: 12px; height:235px; min-height:235px; max-height: 235px; }
+#発電蓄電施設 #発電量推移（月別） .card-content .bar-chart { flex: 1; position: relative; }
+
+/* パフォーマンス - 発電施設 */
+#発電蓄電施設 #パフォーマンス .card-content { border-top: 2px solid #e83c60; display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1; padding: 20px; height: 353px; min-height: 353px; max-height: 353px; }
+#発電蓄電施設 #パフォーマンス .card-content .main-label { color: #444; font-size: 18px; font-weight: 700; margin:8px;}
+#発電蓄電施設 #パフォーマンス .card-content .main-unit { color: #444; font-size: 18px; font-weight: 700; }
+#発電蓄電施設 #パフォーマンス .card-content .gauge-chart { width: 100%; height: 94px; position: relative; }
+#発電蓄電施設 #パフォーマンス .card-content .gauge-chart .unit{ display:none; }
+#発電蓄電施設 #パフォーマンス .card-content .progress-chart { width: 100%; height: 30px; position: relative; background-color: #f5f5f5; border-radius: 4px; overflow: hidden; }
+#発電蓄電施設 #パフォーマンス .card-content .progress-chart canvas { background-color: #f5f5f5; }
+#発電蓄電施設 #パフォーマンス .card-content .progress-chart::after { content: '68%'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: "Lexend", sans-serif; font-size: 16px; color: #212121; font-weight: 500; padding-left: 8px; background: linear-gradient(to left, #fff 0%, rgba(255,255,255,0) 100%); }
+#発電蓄電施設 #パフォーマンス .card-content .target-value .value { color: #225836; font-weight: 500; margin-left: 8px; }
+
+#発電蓄電施設 #パフォーマンス .card-content .seperator {width:calc(100% - 4px);background-color: #e6e6e6;min-height:1px;margin:8px 0 0 0;}
+
+#発電蓄電施設 #パフォーマンス .card-content .battery-chart{display:flex; align-items: center; flex-direction: row;}
+#発電蓄電施設 #パフォーマンス .card-content .battery-chart-head{width:10px; height:18px;background-color: #efefef; border-radius: 4px 0 0 4px;}
+#発電蓄電施設 #パフォーマンス .card-content .battery-chart-body{width:150px; height:64px;background-color: #efefef; border-radius: 4px; display:flex; flex-direction: row; align-items: center; justify-content: space-evenly;}
+#発電蓄電施設 #パフォーマンス .card-content .battery-level{width:8px; height:42px; background-color: #fff;}
+#発電蓄電施設 #パフォーマンス .card-content .battery-chart-body .active{background-color: #f2dd66;}
+#発電蓄電施設 #パフォーマンス .card-content .battery-value{ font-family: "Lexend", sans-serif; font-size: 40px; font-weight: 500; color: #444; display: flex ; flex-direction: row; align-items: baseline;}
+#発電蓄電施設 #パフォーマンス .card-content .battery-value-unit{ font-family: "Noto Sans JP", sans-serif; font-size: 18px; font-weight: 700; color: #444; margin-left: 4px; }
+
+
+/* 本日の発電量 - 発電施設 */
+#発電蓄電施設 #本日の発電量 .card-content { border-top: 2px solid #fff100; padding: 12px; height:235px; min-height:235px; max-height: 235px; }
+#発電蓄電施設 #本日の発電量 .card-content .bar-chart { flex: 1; position: relative; }
+
+
+/***********************************************************
+オフサイト発電施設
+***********************************************************/
+
+/* 累計発電量 - 発電施設 */
+#発電施設 #累計発電量 .card-content { border-top: 2px solid #f28f00; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; flex: 1; padding: 8px 20px; }
+#発電施設 #累計発電量 .card-content .main-value { font-family: "Lexend", sans-serif; font-size: 44px; font-weight: 500; color: #444; }
+#発電施設 #累計発電量 .card-content .main-unit { font-family: "Noto Sans JP", sans-serif; font-size: 18px; font-weight: 700; color: #444; margin-left: 4px; }
+#発電施設 #累計発電量 .card-content .comparison { color: #757575; font-size: 14px; border: 2px solid #e0e0e0; text-align: center; margin-left: 8px; }
+#発電施設 #累計発電量 .card-content .comparison-label { font-family: "Noto Sans JP", sans-serif; font-size: 12px; font-weight: 700; color: #444; border-bottom: 2px solid #e0e0e0; padding: 2px 8px; }
+#発電施設 #累計発電量 .card-content .comparison-value { font-family: "Lexend", sans-serif; color: #212121; font-size: 40px; padding: 0px 6px; line-height: 48px; }
+#発電施設 #累計発電量 .card-content .comparison-value .comparison-unit { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; line-height: 16px; padding: 0px 8px 8px; }
+#発電施設 #累計発電量 .card-content .percentage { font-family: "Noto Sans JP", sans-serif; font-size: 16px; font-weight: 700; color: #444; font-size: 48px; line-height: 100%; }
+
+/* 発電量推移（月別） - 発電施設 */
+#発電施設 #発電量推移（月別） .card-content { border-top: 2px solid #e60012; padding: 12px; min-height: 235px; }
+#発電施設 #発電量推移（月別） .card-content .bar-chart { flex: 1; position: relative; }
+
+/* パフォーマンス - 発電施設 */
+#発電施設 #パフォーマンス .card-content { border-top: 2px solid #e83c60; display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1; padding: 20px; max-height: 235px; }
+#発電施設 #パフォーマンス .card-content .main-label { color: #444; font-size: 18px; font-weight: 700; margin-bottom:20px;}
+#発電施設 #パフォーマンス .card-content .main-unit { color: #444; font-size: 18px; font-weight: 700; }
+#発電施設 #パフォーマンス .card-content .gauge-chart { width: 100%; height: 94px; position: relative; }
+#発電施設 #パフォーマンス .card-content .gauge-chart .unit{ display:none; }
+#発電施設 #パフォーマンス .card-content .progress-chart { width: 100%; height: 30px; position: relative; background-color: #f5f5f5; border-radius: 4px; overflow: hidden; }
+#発電施設 #パフォーマンス .card-content .progress-chart canvas { background-color: #f5f5f5; }
+#発電施設 #パフォーマンス .card-content .progress-chart::after { content: '68%'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: "Lexend", sans-serif; font-size: 16px; color: #212121; font-weight: 500; padding-left: 8px; background: linear-gradient(to left, #fff 0%, rgba(255,255,255,0) 100%); }
+#発電施設 #パフォーマンス .card-content .target-value .value { color: #225836; font-weight: 500; margin-left: 8px; }
+
+/* 本日の発電量 - 発電施設 */
+#発電施設 #本日の発電量 .card-content { border-top: 2px solid #fff100; padding: 12px; max-height: 235px; min-height: 235px;}
+#発電施設 #本日の発電量 .card-content .bar-chart { flex: 1; position: relative; }
+
+/* チャート凡例 */
+.chart-legend { padding: 8px 0 0 0; background: #fff; display: flex; justify-content: flex-start; align-items: flex-start; border-top:1px solid #e6e6e6; }
+.legend-title { font-size: 10px; font-weight: 700; color: #444; padding-right: 12px; text-wrap-mode: nowrap; }
+.legend-items { display: flex; gap: 2px; flex-wrap: wrap; margin-left: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; }
+.legend-item .color-box { width: 10px; height: 10px; border-radius: 2px; }
+.legend-item .label { font-size: 10px; font-weight: 500; color: #444; }
+
+
+
+
+
+/* 凡例共通スタイル */
+.monthly-recycle-legend, .monthly-performance-legend { padding: 8px 12px; background: #fff; display: flex; align-items: center; border-radius: 100px; border: 1px solid #b3b3b3; position: relative; }
+.monthly-performance-legend { flex-shrink: 0; }
+.monthly-recycle-legend { flex: 1; }
+
+/* 再エネ内訳の吹き出し */
+.monthly-recycle-legend::before { content: ''; position: absolute; display: block; width: 0; height: 0; top: -37px; right: 40px; border-style: solid; border-width: 0 8px 36px 8px; border-color: transparent transparent #b3b3b3 transparent; }
+.monthly-recycle-legend::after { content: ''; position: absolute; width: 0; height: 0; top: -33px; right: 41px; border-style: solid; border-width: 0 7px 33px 7px; border-color: transparent transparent #fff transparent; }
+
+/* 再エネ発電実績の吹き出し */
+.monthly-performance-legend::before { content: ''; position: relative; display: block; width: 0; height: 0; top: -44px; left: 38px; border-style: solid; border-width: 0 8px 36px 8px; border-color: transparent transparent #b3b3b3 transparent; }
+.monthly-performance-legend::after { content: ''; position: absolute; width: 0; height: 0; top: -33px; left: 51px; border-style: solid; border-width: 0 7px 34px 7px; border-color: transparent transparent #fff transparent; }
+
+/* 凡例タイトルとアイテム */
+.monthly-recycle-legend .legend-title, .monthly-performance-legend .legend-title { font-size: 10px; font-weight: 700; color: #444; padding-right: 12px; border-right: 1px solid #e6e6e6; margin-right: 12px; white-space: nowrap; }
+.monthly-recycle-legend .legend-items, .monthly-performance-legend .legend-items { display: flex; gap: 4px; flex-wrap: wrap; margin-left: 0px !important; }
+.monthly-recycle-legend .legend-item, .monthly-performance-legend .legend-item { display: flex; align-items: center; gap: 8px; }
+.monthly-recycle-legend .legend-item .color-box, .monthly-performance-legend .legend-item .color-box { width: 10px; height: 10px; border-radius: 2px; }
+.monthly-recycle-legend .legend-item .label, .monthly-performance-legend .legend-item .label { font-size: 10px; font-weight: 500; color: #444; white-space: nowrap; }
+
+
